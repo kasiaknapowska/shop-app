@@ -1,0 +1,24 @@
+@use "../../scss/mixins";
+@use "../../scss/variables" as *;
+
+.products_container {
+    // padding-top: 4rem;
+    // padding-bottom: 8rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    margin-bottom: 6rem;
+    margin-top: 4rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    // display: grid;
+    // grid-gap: 2rem;
+    // grid-auto-rows: auto;
+    // grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+.products_quantity {
+    display: block;
+    margin-bottom: 4rem;
+@include mixins.websiteFont(400, $colorNeutral, .9rem)
+}

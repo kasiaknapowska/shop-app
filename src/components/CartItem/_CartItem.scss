@@ -1,0 +1,61 @@
+@use "../../scss/variables" as *;
+.cart_item {
+  &:first-child {
+    border-top: 1px solid $colorNeutralLight;
+  }
+  h2 {
+    max-width: 30rem;
+  }
+  p {
+    font-weight: 500;
+    letter-spacing: 1px;
+  }
+  position: relative;
+  border-bottom: 1px solid $colorNeutralLight;
+  padding: 2rem;
+  padding-right: 5rem;
+  display: flex;
+  flex-direction: column;
+  @media screen and ($tablet_s) {
+    flex-direction: row;
+    align-items: center;
+    column-gap: 3rem;
+  }
+  @media screen and ($desktop_s) {
+    min-width: 700px;
+  }
+  .cart_delete_icon {
+    color: $colorSecondary;
+    cursor: pointer;
+    position: absolute;
+    top: 3rem;
+    right: 2rem;
+    @media screen and ($tablet_s) {
+      top: 2rem;
+    }
+  }
+}
+.cart_img {
+  width: 4rem;
+  height: fit-content;
+  margin: 1rem 0;
+}
+.cart_quantity {
+  span {
+    &:first-child, &:last-child {
+      cursor: pointer;
+      border: 1px solid $colorNeutralLight;
+    }
+    display: inline-block;
+    padding: 0.8rem;
+    min-width: 2.4rem;
+    text-align: center;
+    margin: 1rem 0;
+    border-top: 1px solid $colorNeutralLight;
+    border-bottom: 1px solid $colorNeutralLight;
+  }
+}
+.cart_select_row {
+justify-content: flex-start;
+column-gap: 2rem;
+}

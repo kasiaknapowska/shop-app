@@ -1,0 +1,29 @@
+@use "../../scss/variables" as *;
+@use "../../scss/mixins";
+.cart_summary {
+    padding: 4rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0 auto;
+    p {
+      margin: .5rem 0;
+    }
+    span:not(.login_redirection_link) {
+      @include mixins.websiteFont(700, $colorNeutral, 1.5rem);
+    }
+    @media screen and ($desktop_s) {
+      width: 700px;
+    }
+    .login_redirection {
+      margin: 1rem 0;
+      span.login_redirection_link {
+        color: $colorSecondary;
+        cursor: pointer;
+        text-decoration: underline;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-underline-offset: 0.2rem;
+      }
+  }
+  }

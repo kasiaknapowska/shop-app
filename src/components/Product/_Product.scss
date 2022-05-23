@@ -1,0 +1,57 @@
+@use "../../scss/mixins";
+@use "../../scss/variables" as *;
+
+.card {
+  border: 1px solid $colorNeutralLight;
+  padding: 1rem;
+  padding-bottom: 2rem;
+  position: relative;
+  width: 90%;
+  @media screen and ($tablet) {
+    width: 45%;
+  }
+  @media screen and ($desktop_s) {
+    width: 30%;
+  }
+  // @media screen and ($tablet_s) {
+  //   grid-template-columns: repeat(2, 1fr);
+  // }
+  // @media screen and ($desktop_s) {
+  //   grid-template-columns: repeat(3, 1fr);
+  // }
+  span {
+    @include mixins.websiteFont(700, $colorNeutral, 1rem);
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+  }
+  h3 {
+    cursor: pointer;
+  }
+  .favorite_icon {
+    color: $colorSecondary;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+  }
+  .cart_add_icon {
+    color: $colorSecondary;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    cursor: pointer;
+  }
+}
+.img_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 8rem;
+  .card_img {
+    max-width: 8rem;
+    max-height: 8rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+}

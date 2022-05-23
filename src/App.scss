@@ -1,0 +1,88 @@
+@use "./scss/reset";
+@use "./scss/variables" as *;
+@use "./scss/mixins";
+
+
+//shared
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    @media screen and ($tablet) {
+        width: 80%;
+      }
+      @media screen and ($desktop) {
+        max-width: 1100px;
+      }
+}
+.center {
+  display: flex;
+  justify-content: center;
+}
+h1 {
+  @include mixins.websiteFont(400, $colorNeutral, 1.5rem) {
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+}
+h2 {
+  @include mixins.websiteFont(500, $colorNeutral, 1rem)
+}
+h3 {
+  @include mixins.websiteFont(500, $colorNeutral, .8rem) {
+    margin: 1rem 0;
+  }
+}
+p {
+    @include mixins.websiteFont(400, $colorNeutralDark, 1rem);
+    margin: 1rem 0;
+}
+a {
+  
+  display: block;
+  text-decoration: none;
+
+  @include mixins.websiteFont(400, $colorNeutral, 1rem);
+  &:hover {
+    color: $colorSecondary;
+    font-weight: 500;;
+  }
+}
+form {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+}
+input {
+  background-color: white;
+  display: block;
+  padding: .8rem;
+  border: 1px solid $colorNeutralLight;
+  border-radius: 5px;
+  margin: .8rem 0;
+  font-size: 1rem;
+  font-weight: 400;
+  color: $colorNeutral;
+  &::placeholder {
+    color: #9e9e9e;
+  }
+  @media screen and ($tablet_s) {
+    width: 24rem;
+  }
+}
+.error {
+  color: $colorError;
+  text-align: center;
+  margin: 0;
+  font-size: .9rem;
+}

@@ -1,0 +1,51 @@
+@use "../../scss/variables" as *;
+@use "../../scss/mixins";
+
+.btn {
+    padding: .6rem 1.2rem;
+    margin: 2rem 0;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 5px;
+    @include mixins.websiteFont(500, white, 1rem) {
+        text-transform: uppercase;
+    } 
+    .button_icon {
+        margin-right: .5rem;
+        display: flex;
+        align-items: center;
+        .fa-regular {
+            width: 2rem;
+            height: 2rem;
+            color: white;
+        }
+    }
+}
+.submit_btn {
+    min-width: 12rem;
+    justify-content: center;
+    color: white;
+    background-color: $colorSecondary;
+    &:hover {
+        background-color: #ae5d9c;
+    }
+}
+.primary {
+    color: white;
+    background-color: $colorSecondary;
+    border: 2px solid $colorSecondary;
+    &:hover {
+        background-color: #ae5d9c;
+        border-color: #ae5d9c;
+    }
+}
+.secondary {
+    color: $colorSecondary;
+    border: 2px solid $colorSecondary;
+    background-color: white;
+    &:hover {
+        background-color: $colorSecondary;
+        color: white;
+    } 
+}

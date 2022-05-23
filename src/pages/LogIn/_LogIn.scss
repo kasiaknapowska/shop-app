@@ -1,0 +1,14 @@
+@use "../../scss/variables" as *;
+
+.change_form {
+  margin: 1rem 0;
+  text-align: center;
+  .change_form_link {
+    color: $colorSecondary;
+    cursor: pointer;
+    text-decoration: underline;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-underline-offset: 0.2rem;
+  }
+}
