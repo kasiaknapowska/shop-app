@@ -4,11 +4,13 @@ import {
   collection,
   getDocs,
   updateDoc,
+  arrayUnion,
 //   deleteDoc,
 } from "firebase/firestore";
 import { db } from "./init-firebase";
 
 const usersCollectionRef = collection(db, "users");
+const faqCollectionRef = collection(db, "faq")
 
 const getUsers = (successCallback) => {
   getDocs(usersCollectionRef)
@@ -45,4 +47,26 @@ const editUser = (id, name, surname, phone, street, streetNumber,  zipCode, city
     .catch((err) => console.log(err.message));
 };
 
-export { usersCollectionRef, getUsers, postUser, editUser };
+const addOrder = (id, order, successcallback) => {
+  const docUsersRef = doc(db, "users", id);
+  updateDoc(docUsersRef, {
+    orders: arrayUnion(order),
+  })
+    .then((response) => {
+      console.log("User edited");
+      successcallback()
+    })
+    .catch((err) => console.log(err.message));
+};
+
+
+const getFAQ = (successCallback) => {
+  getDocs(faqCollectionRef)
+    .then((response) => {
+      console.log(response.docs);
+      successCallback(response);
+    })
+    .catch((err) => console.log(err.message));
+};
+
+export { usersCollectionRef, getUsers, postUser, editUser, addOrder, getFAQ };

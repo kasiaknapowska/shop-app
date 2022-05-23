@@ -2,9 +2,9 @@
 @use "../../scss/mixins";
 
 .cart_container {
-  // > p {
-  //   text-align: center;
-  // }
+  > p:not(.error) {
+    text-align: center;
+  }
   h2.login_redirection {
     text-align: left;
   }
@@ -22,20 +22,3 @@
  
 }
 
-
-.shipping_data {
-  @media screen and ($desktop_s) {
-    width: 700px;
-  }
-  h2 {
-    @include mixins.websiteFont(500, $colorNeutral, 1rem);
-    margin-bottom: 1rem;
-  }
-  p {
-    color: $colorNeutralDark;
-    margin: .5rem 0;
-  }
-  > div:first-of-type {
-    margin-bottom: 3rem;
-  }
-}

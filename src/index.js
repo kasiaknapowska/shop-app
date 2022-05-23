@@ -9,6 +9,7 @@ import Cart from "./pages/Cart/Cart";
 import LogIn from "./pages/LogIn/LogIn";
 import User from "./pages/User/User"
 import Info from "./pages/Info/Info";
+import FAQ from "./pages/FAQ/FAQ";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -24,6 +25,7 @@ root.render(
             <Route path="login" element={<LogIn />} />
             <Route path="user" element={<User />} />
             <Route path="info" element={<Info />} />
+            <Route path="faq" element={<FAQ />} />
           </Route>
         </Routes>
       </BrowserRouter>

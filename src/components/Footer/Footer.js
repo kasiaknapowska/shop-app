@@ -12,7 +12,7 @@ export default function Footer() {
           <h2 className="footer_title">Customer service</h2>
           <Link to="/info">Shop regulations</Link>
           <Link to="/info">Privacy policy</Link>
-          <Link to="/">FAQ</Link>
+          <Link to="/faq">FAQ</Link>
           <Link to="/info">Shipping</Link>
           <Link to="/info">Complaints and returns</Link>
         </div>

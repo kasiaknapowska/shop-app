@@ -49,7 +49,7 @@ export default function Products({ category }) {
         <span className="products_quantity">
           ( {products && products.length} products )
         </span>
-        {isLoading && <Loading />}
+        {isLoading && <Loading text="LOADING"/>}
         <div className="container products_container">
           {products &&
             products.map((product) => {

@@ -1,0 +1,22 @@
+@use "../../scss/variables" as *;
+@use "../../scss/mixins";
+
+.shipping_data {
+    @media screen and ($desktop_s) {
+      width: 700px;
+    }
+    h2 {
+      @include mixins.websiteFont(500, $colorNeutral, 1rem);
+      margin-bottom: 1rem;
+    }
+    p:not(.error) {
+      color: $colorNeutralDark;
+      margin: .5rem 0;
+    }
+  & > p {
+      text-align: left;
+    }
+    > div:first-of-type {
+      margin-bottom: 3rem;
+    }
+  }

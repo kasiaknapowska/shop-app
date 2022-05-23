@@ -10,7 +10,7 @@ export default function FormEdit({ setEditFormOpen }) {
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
 
   const [formData, setFormData] = useState({
-    email: loggedInUser.email,
+    // email: loggedInUser.email,
     name: loggedInUser.name,
     surname: loggedInUser.surname,
     phone: loggedInUser.phone,
@@ -34,14 +34,14 @@ export default function FormEdit({ setEditFormOpen }) {
     });
   };
 
-  const onEdit = (e) => {
+  const onEdit = (e, formData) => {
     e.preventDefault();
     const { name, surname, phone, street, streetNumber, zipCode, city } =
       formData;
     const newData = {
-      id: loggedInUser.id,
-      email: loggedInUser.email,
-      password: loggedInUser.password,
+      // id: loggedInUser.id,
+      // email: loggedInUser.email,
+      // password: loggedInUser.password,
       name: name,
       surname: surname,
       phone: phone,
@@ -49,7 +49,7 @@ export default function FormEdit({ setEditFormOpen }) {
       streetNumber: streetNumber,
       zipCode: zipCode,
       city: city,
-      orders: loggedInUser.orders,
+      // orders: loggedInUser.orders,
     };
     dispatch(loggedInUserData(newData));
     editUser(
@@ -74,7 +74,7 @@ export default function FormEdit({ setEditFormOpen }) {
           className="close_icon"
           onClick={() => setEditFormOpen(false)}
         />
-      <form className="form_container" onSubmit={(e) => onEdit(e)}>
+      <form className="form_container" onSubmit={(e) => onEdit(e, formData)}>
         <label>Personal data</label>
         <input
           type="text"

@@ -58,15 +58,15 @@ export default function FormSignUp({
         getUsers((response) => {
           const usersFromFirebase = response.docs.map((doc) => ({
             email: doc.data().email,
-            password: doc.data().password,
-            name: doc.data().name,
-            surname: doc.data().surname,
-            phone: doc.data().phone,
-            street: doc.data().street,
-            streetNumber: doc.data().streetNumber,
-            zipCode: doc.data().zipCode,
-            city: doc.data().city,
-            orders: doc.data().orders,
+            // password: doc.data().password,
+            // name: doc.data().name,
+            // surname: doc.data().surname,
+            // phone: doc.data().phone,
+            // street: doc.data().street,
+            // streetNumber: doc.data().streetNumber,
+            // zipCode: doc.data().zipCode,
+            // city: doc.data().city,
+            // orders: doc.data().orders,
             id: doc.id,
           }));
           setUsers(usersFromFirebase);

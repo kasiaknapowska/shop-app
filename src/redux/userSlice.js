@@ -13,24 +13,24 @@ const userSlice = createSlice({
       streetNumber: "",
       zipCode: "",
       city: "",
-      orders: [],
+      // orders: [],
     },
   },
   reducers: {
     loggedInUserData: (state, action) => {
       state.loggedInUser =
         {
-          ...state.loggedInUser,
-          email: action.payload.email,
-          id: action.payload.id,
-          name: action.payload.name,
-          surname: action.payload.surname,
-          phone: action.payload.phone,
-          street: action.payload.street,
-          streetNumber: action.payload.streetNumber,
-          zipCode: action.payload.zipCode,
-          city: action.payload.city,
-          orders: action.payload.orders,
+          ...state.loggedInUser, ...action.payload
+          // email: action.payload.email || state.email,
+          // id: action.payload.id,
+          // name: action.payload.name,
+          // surname: action.payload.surname,
+          // phone: action.payload.phone,
+          // street: action.payload.street,
+          // streetNumber: action.payload.streetNumber,
+          // zipCode: action.payload.zipCode,
+          // city: action.payload.city,
+          // orders: action.payload.orders || state.orders,
         };
     },
     loggedOutUserData: (state) => {
@@ -44,7 +44,7 @@ const userSlice = createSlice({
         streetNumber: "",
         zipCode: "",
         city: "",
-        orders: [],
+        // orders: [],
       }
     }
   },

@@ -13,6 +13,12 @@ export default function Header() {
   const count = useSelector((state) => state.counter.count);
   const loggedIn = useSelector(state => state.logIn.loggedIn);
   const dispatch = useDispatch();
+
+  const onLogOut = () => {
+    dispatch(logOut())
+    navigate("/login")
+  }
+
   return (
     <header>
       <nav className="nav_icons_container">
@@ -30,7 +36,7 @@ export default function Header() {
           <ShoppingCartOutlinedIcon fontSize="medium" className="nav_icon" />
           <span className="circle">{count}</span>
         </Link>
-        <div onClick={() => dispatch(logOut())}>Log Out</div>
+        <div onClick={() => onLogOut()}>Log Out</div>
       </nav>
       <img
         className="logo"
