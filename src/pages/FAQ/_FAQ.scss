@@ -1,0 +1,23 @@
+@use "../../scss/variables" as *;
+
+.faq_page {
+    h1 {
+        margin-bottom: 3rem;
+    }
+    .faq {
+        padding: 1.5rem 0;
+        border-top: 1px solid $colorNeutralLight;
+        border-bottom: 1px solid $colorNeutralLight; 
+    }
+    h2 {
+     
+        cursor: pointer;
+        &:hover {
+            color: $colorSecondary;
+        }
+        &.active {
+            color: $colorSecondary;
+        }
+    }
+
+}

@@ -35,6 +35,17 @@
       display: flex;
       align-items: center;
     }
+    .footer_link {
+      text-decoration: none;
+      &:hover {
+        color: $colorSecondary;
+      }
+      &:visited {
+        outline: none;
+        text-decoration: none;
+      }
+    }
+ 
   }
   .footer_title {
     font-weight: 700;

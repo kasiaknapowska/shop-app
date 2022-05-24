@@ -10,11 +10,11 @@ export default function Footer() {
       <div className="container footer_container">
         <div className="footer_info">
           <h2 className="footer_title">Customer service</h2>
-          <Link to="/info">Shop regulations</Link>
-          <Link to="/info">Privacy policy</Link>
-          <Link to="/faq">FAQ</Link>
-          <Link to="/info">Shipping</Link>
-          <Link to="/info">Complaints and returns</Link>
+          <Link to="/info" className="footer_link">Shop regulations</Link>
+          <Link to="/info" className="footer_link">Privacy policy</Link>
+          <Link to="/faq" className="footer_link">FAQ</Link>
+          <Link to="/info" className="footer_link">Shipping</Link>
+          <Link to="/info" className="footer_link">Complaints and returns</Link>
         </div>
         <div className="footer_info">
           <h2 className="footer_title">Contact</h2>

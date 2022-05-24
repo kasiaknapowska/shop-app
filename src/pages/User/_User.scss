@@ -4,15 +4,20 @@
 .user {
   @media screen and ($tablet) {
     padding: 2rem 0;
+  
   }
   .user_data {
     display: flex;
     flex-wrap: wrap;
     column-gap: 5rem;
     row-gap: 2rem;
+    margin-bottom: 2rem;
   }
   .orders {
     margin-top: 2rem;
+    > h2 {
+      margin-top: 2rem;
+    }
   }
   .icon_li {
     display: flex;

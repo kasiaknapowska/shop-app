@@ -48,9 +48,10 @@ export default function Cart() {
 
   const onCheckOut = () => {
     const error = [];
-    cart.map((item) => {
-      if (item.category.includes("cloth") && item.size === "")
-        error.push("Choose cloth size");
+    cart.forEach((item) => {
+      if (item.category.includes("cloth") && item.size === "") {
+        error.push("Choose cloth size")
+      }
     });
     if (error.length > 0) setSizeError(error[0]);
 
@@ -81,14 +82,14 @@ export default function Cart() {
     dispatch(resetPrice(0));
 
     const orderedProducts = cart.map((item) => {
-      return { id: item.id, quantity: item.quantity, image: item.image };
+      return { id: item.id, quantity: item.quantity, image: item.image, title: item.title };
     });
     const orderDate = `${new Date().getDate()} / ${
       new Date().getMonth() + 1
     } / ${new Date().getFullYear()}`;
 
     setNewOrder({
-      orderPrice: totalPrice + shippingPrice,
+      orderPrice: (totalPrice + shippingPrice).toFixed(2),
       orderId: parseInt(Math.random() * Math.pow(10, 7)),
       date: orderDate,
       products: orderedProducts,

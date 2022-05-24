@@ -1,6 +1,8 @@
-.info_page > p {
+.info_page {
+  > p {
     margin: 1rem 0;
-}
-.info_page > h1 {
-    margin-bottom: 3rem;
+  }
+  h2:not(h2:first-child) {
+      padding-top: 2rem;
+  }
 }

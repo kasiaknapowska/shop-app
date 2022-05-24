@@ -39,7 +39,7 @@ h2 {
   @include mixins.websiteFont(500, $colorNeutral, 1rem)
 }
 h3 {
-  @include mixins.websiteFont(500, $colorNeutral, .8rem) {
+  @include mixins.websiteFont(500, $colorNeutral, .9rem) {
     margin: 1rem 0;
   }
 }
@@ -86,4 +86,6 @@ input {
   margin: 0;
   font-size: .9rem;
 }
-
+a, a:active, a:focus{
+  outline: none;
+}

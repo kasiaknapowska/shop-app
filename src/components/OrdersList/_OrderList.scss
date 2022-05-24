@@ -1,0 +1,32 @@
+@use "../../scss/variables" as *;
+@use "../../scss/mixins";
+
+.order {
+padding: 2rem 0 1rem 0;
+margin: 1rem 0;
+border-top: 1px solid $colorNeutralLight;
+// border-bottom: 1px solid $colorNeutralLight; 
+    h2 {
+       margin-bottom: 1rem;
+       color: $colorSecondary;
+      span {
+          margin-right: 2rem;
+          display: inline-block;
+      }
+    }
+
+    .order_list_product {
+       display: flex;
+       align-items: center;
+       h3 {
+           color: $colorNeutralDark;
+       }
+    }
+    .order_img_prev {
+        width: 3rem;
+        height: fit-content;
+        padding: .5rem;
+        margin-right: 1rem;;
+    }
+    
+}

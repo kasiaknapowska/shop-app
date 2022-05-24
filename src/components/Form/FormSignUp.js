@@ -17,7 +17,7 @@ export default function FormSignUp({
 
   const dispatch = useDispatch();
 
-  const checkNewUser = (e) => {
+  const checkNewUser = async (e) => {
     e.preventDefault();
     setErrors([]);
     const newErrors = [];
@@ -54,19 +54,11 @@ export default function FormSignUp({
         city: "",
         orders: [],
       };
+
       postUser(newUser, () =>
         getUsers((response) => {
           const usersFromFirebase = response.docs.map((doc) => ({
             email: doc.data().email,
-            // password: doc.data().password,
-            // name: doc.data().name,
-            // surname: doc.data().surname,
-            // phone: doc.data().phone,
-            // street: doc.data().street,
-            // streetNumber: doc.data().streetNumber,
-            // zipCode: doc.data().zipCode,
-            // city: doc.data().city,
-            // orders: doc.data().orders,
             id: doc.id,
           }));
           setUsers(usersFromFirebase);

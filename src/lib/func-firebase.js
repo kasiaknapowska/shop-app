@@ -15,7 +15,6 @@ const faqCollectionRef = collection(db, "faq")
 const getUsers = (successCallback) => {
   getDocs(usersCollectionRef)
     .then((response) => {
-      console.log(response.docs);
       successCallback(response);
     })
     .catch((err) => console.log(err.message));

@@ -7,9 +7,10 @@ import App from "./App";
 import Home from "./pages/Home/Home";
 import Cart from "./pages/Cart/Cart";
 import LogIn from "./pages/LogIn/LogIn";
-import User from "./pages/User/User"
+import User from "./pages/User/User";
 import Info from "./pages/Info/Info";
 import FAQ from "./pages/FAQ/FAQ";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -17,17 +18,19 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<App />}>
-            <Route index element={<Home />} />
-            <Route path="home" element={<Home />} />
-            <Route path="cart" element={<Cart />} />
-            <Route path="login" element={<LogIn />} />
-            <Route path="user" element={<User />} />
-            <Route path="info" element={<Info />} />
-            <Route path="faq" element={<FAQ />} />
-          </Route>
-        </Routes>
+        <ScrollToTop>
+          <Routes>
+            <Route path="/" element={<App />}>
+              <Route index element={<Home />} />
+              <Route path="home" element={<Home />} />
+              <Route path="cart" element={<Cart />} />
+              <Route path="login" element={<LogIn />} />
+              <Route path="user" element={<User />} />
+              <Route path="info" element={<Info />} />
+              <Route path="faq" element={<FAQ />} />
+            </Route>
+          </Routes>
+        </ScrollToTop>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>
