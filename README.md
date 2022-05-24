@@ -43,6 +43,6 @@ The SHOP application consist of a few pages:
 * RWD - the app is fully responsive
 
 ## Deployed on vercel.com
-[https://shop-app-kasiaknapowska.vercel.app/login](https://shop-app-kasiaknapowska.vercel.app/login)
+[https://shop-app-kasiaknapowska.vercel.app](https://shop-app-kasiaknapowska.vercel.app)
 
 ### Author: Katarzyna Knapowska
