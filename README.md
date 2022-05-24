@@ -42,5 +42,7 @@ The SHOP application consist of a few pages:
 * Flexbox
 * RWD - the app is fully responsive
 
+## Deployed on vercel.com
+[https://shop-app-kasiaknapowska.vercel.app/login](https://shop-app-kasiaknapowska.vercel.app/login)
 
 ### Author: Katarzyna Knapowska
