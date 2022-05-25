@@ -8,19 +8,19 @@ export default function SecurityAlert({ setShowSecurityAlert }) {
       <div className="security">
         <div className="security_alert_bg"></div>
         <div className="security_container">
-          <h1>Thank You for visiting shop react app</h1>
+          <h1>Welcome to shop react app</h1>
           <div className="security_icon_info">
             {" "}
             <div className="no_security_icon">
               <NoEncryptionIcon />
             </div>
             <h2>
-              NOTE! This app has a security vulnerability according to no
-              authentication provided to sign in & log in forms yet.
+              NOTE! This app has a security vulnerability according to
+               sign in & log in authentication not implemented yet.
             </h2>
           </div>
           <p>
-            For registration use <strong>fake personal data</strong> only.
+            For registration purposes use <strong>fake personal data</strong> only.
             For overview and testing You can use{" "}
             email: test@gmail.com & password: testshopapp
           </p>

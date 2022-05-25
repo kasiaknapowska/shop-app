@@ -26,11 +26,12 @@
     align-items: center;
     border-radius: 5px;
     text-align: left;
-    position: fixed;
-    top: 5vh;
+    position: relative;
+    top: -13rem;
     @media screen and ($desktop_s) {
       max-width: 800px;
       top: 15vh;
+      position: fixed;
     }
   }
   .no_security_icon {

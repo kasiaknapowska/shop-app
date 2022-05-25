@@ -5,12 +5,11 @@ import {
   getDocs,
   updateDoc,
   arrayUnion,
-//   deleteDoc,
 } from "firebase/firestore";
 import { db } from "./init-firebase";
 
 const usersCollectionRef = collection(db, "users");
-const faqCollectionRef = collection(db, "faq")
+const faqCollectionRef = collection(db, "faq");
 
 const getUsers = (successCallback) => {
   getDocs(usersCollectionRef)
@@ -21,7 +20,18 @@ const getUsers = (successCallback) => {
 };
 
 const postUser = (user, successCallback) => {
-  addDoc(usersCollectionRef, { email: user.email, password: user.password, name: user.name, surname: user.surname, phone: user.phone, street: user.street, streetNumber: user.streetNumber, zipCode: user.zipCode, city: user.city, orders: user.orders })
+  addDoc(usersCollectionRef, {
+    email: user.email,
+    password: user.password,
+    name: user.name,
+    surname: user.surname,
+    phone: user.phone,
+    street: user.street,
+    streetNumber: user.streetNumber,
+    zipCode: user.zipCode,
+    city: user.city,
+    orders: user.orders,
+  })
     .then((response) => {
       console.log("User posted");
       successCallback();
@@ -29,7 +39,16 @@ const postUser = (user, successCallback) => {
     .catch((err) => console.log(err.message));
 };
 
-const editUser = (id, name, surname, phone, street, streetNumber,  zipCode, city) => {
+const editUser = (
+  id,
+  name,
+  surname,
+  phone,
+  street,
+  streetNumber,
+  zipCode,
+  city
+) => {
   const docUsersRef = doc(db, "users", id);
   updateDoc(docUsersRef, {
     name: name,
@@ -53,11 +72,10 @@ const addOrder = (id, order, successcallback) => {
   })
     .then((response) => {
       console.log("User edited");
-      successcallback()
+      successcallback();
     })
     .catch((err) => console.log(err.message));
 };
-
 
 const getFAQ = (successCallback) => {
   getDocs(faqCollectionRef)

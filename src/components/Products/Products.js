@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getAllProducts, getProductsInCategory } from "../../API/fetch";
 import Product from "../Product/Product";
 import "./_Products.scss";
-import useLocalStorage from "../../hooks/useLocalStorage";
+import {useLocalStorage} from "../../hooks/useWindowStorage";
 import Loading from "../Loading/Loading";
 
 export default function Products({ category }) {

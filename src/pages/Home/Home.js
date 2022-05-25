@@ -4,12 +4,12 @@ import { getCategories } from "../../API/fetch";
 import Select from "../../components/Select/Select";
 import Products from "../../components/Products/Products";
 import SecurityAlert from "../../components/SecurityAlert/SecurityAlert";
-import useLocalStorage from "../../hooks/useLocalStorage";
+import { useSessionStorage } from "../../hooks/useWindowStorage";
 
 export default function Home() {
   const [category, setCategory] = useState("all categories");
   const [allCategories, setAllCategories] = useState([]);
-  const [showSecurityAlert, setShowSecurityAlert] = useLocalStorage("securityAlert", true);
+  const [showSecurityAlert, setShowSecurityAlert] = useSessionStorage("securityAlert", true);
 
   useEffect(() => {
     getCategories((data) => {
@@ -17,9 +17,12 @@ export default function Home() {
     });
   }, []);
 
+
   return (
     <>
-    {showSecurityAlert && <SecurityAlert setShowSecurityAlert={setShowSecurityAlert}/>}
+      {showSecurityAlert && (
+        <SecurityAlert setShowSecurityAlert={setShowSecurityAlert} />
+      )}
       <main className="container home">
         <div className="center home_select">
           <Select

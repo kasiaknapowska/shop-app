@@ -1,6 +1,12 @@
+import { useEffect } from "react";
 import "./_Thanks.scss";
 
 export default function Thanks({ newOrder, bankAccount }) {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
+
   return (
     <section className="thanks_container">
       <h2>Thank you for your order no. {newOrder.orderId}!</h2>
