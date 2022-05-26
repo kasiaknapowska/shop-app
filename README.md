@@ -47,8 +47,8 @@ The SHOP application consist of a few pages:
 
 ## Screenshots
 
-![Mobile screenshots](./Screenshots Mobile ahop-app.jpg)
+![Mobile screenshots](./Mobile.jpg)
 
-![Desktop screenshots](./Screenshots Desktop shop-app.jpg)
+![Desktop screenshots](./Desktop.jpg)
 
 ### Author: Katarzyna Knapowska
