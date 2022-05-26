@@ -108,6 +108,8 @@ export default function Cart() {
   return (
     <>
       <main className="container cart_container">
+      {isLoading && <Loading text="SENDING ORDER" />}
+        {thanks && <Thanks newOrder={newOrder} bankAccount={bankAccount} />}
         <h1>Cart</h1>
         {cart.length === 0 && <p>Your cart is empty</p>}
         {cart.length > 0 && (
@@ -145,8 +147,7 @@ export default function Cart() {
             cart={cart}
           />
         )}
-        {isLoading && <Loading text="SENDING ORDER" />}
-        {thanks && <Thanks newOrder={newOrder} bankAccount={bankAccount} />}
+      
       </main>
     </>
   );

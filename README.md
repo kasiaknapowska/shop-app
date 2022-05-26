@@ -4,8 +4,8 @@ This is online store web application created in ReactJS.
 I created the application after 7 months of learning programming (from HTML5, CSS, SCSS to JavaScript and ReactJS) on the basis of my own UX/UI project idea.
 
 ## NOTE!
-This app has a security vulnerability according to no authentication provided to sign in & log in forms yet.
-For registration use fake personal data only. For overview and testing You can use email: test@gmail.com & password: testshopapp
+This app has a security vulnerability according to sign in & log in authentication not implemented yet.
+For registration purposes use fake personal data only. For overview and testing You can use email: test@gmail.com & password: testshopapp
 
 ## App sections
 
@@ -44,5 +44,11 @@ The SHOP application consist of a few pages:
 
 ## Deployed on vercel.com
 [https://shop-app-kasiaknapowska.vercel.app](https://shop-app-kasiaknapowska.vercel.app)
+
+## Screenshots
+
+![Mobile screenshots](./Screenshots Mobile ahop-app.jpg)
+
+![Desktop screenshots](./Screenshots Desktop shop-app.jpg)
 
 ### Author: Katarzyna Knapowska

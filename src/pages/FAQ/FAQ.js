@@ -2,10 +2,12 @@ import "./_FAQ.scss";
 import { useState, useEffect } from "react";
 import { getFAQ } from "../../lib/func-firebase";
 import classNames from "classnames";
+import Loading from "../../components/Loading/Loading";
 
 export default function FAQ() {
   const [faqs, setFaqs] = useState([]);
   const [showAnswer, setShowAnswer] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getFAQ((response) => {
@@ -14,6 +16,7 @@ export default function FAQ() {
         answer: doc.data().answer,
       }));
       setFaqs(faqFromFirebase);
+      setIsLoading(false);
     });
   }, []);
 
@@ -21,6 +24,7 @@ export default function FAQ() {
   return (
     <main className="container faq_page">
       <h1>FAQ</h1>
+      {isLoading && <Loading text="LOADING" />}
       <section>
         {faqs &&
           faqs.map((faq, index) => {
