@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getUsers } from "../../lib/func-firebase";
 import { useSelector, useDispatch } from "react-redux";
-import { loggedOutUserData } from "../../redux/userSlice";
+import { resetData } from "../../redux/userSlice";
 import FormLogin from "../../components/Form/FormLogin";
 import FormSignUp from "../../components/Form/FormSignUp";
 
@@ -54,7 +54,7 @@ export default function LogIn() {
     if (loggedIn) {
       navigate("/user");
     } else {
-      dispatch(loggedOutUserData());
+      dispatch(resetData());
     }
   }, [loggedIn]);
 

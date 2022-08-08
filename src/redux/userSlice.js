@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    loggedInUser: {
+    currentUser: {
       email: "",
       id: "",
       name: "",
@@ -17,10 +17,10 @@ const userSlice = createSlice({
     },
   },
   reducers: {
-    loggedInUserData: (state, action) => {
-      state.loggedInUser =
+    setCurrentUserData: (state, action) => {
+      state.currentUser =
         {
-          ...state.loggedInUser, ...action.payload
+          ...state.currentUser, ...action.payload
           // email: action.payload.email || state.email,
           // id: action.payload.id,
           // name: action.payload.name,
@@ -33,8 +33,8 @@ const userSlice = createSlice({
           // orders: action.payload.orders || state.orders,
         };
     },
-    loggedOutUserData: (state) => {
-      state.loggedInUser = {
+    resetData: (state) => {
+      state.currentUser = {
         email: "",
         id: "",
         name: "",
@@ -50,5 +50,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { loggedInUserData, loggedOutUserData } = userSlice.actions;
+export const { setCurrentUserData, resetData } = userSlice.actions;
 export default userSlice.reducer;

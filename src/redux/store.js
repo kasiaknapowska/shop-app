@@ -5,22 +5,18 @@ import changeCartReducer from "./changeCartSlice";
 import logInReducer from "./logInSlice";
 import userReducer from "./userSlice";
 
-// import loggedInSlice from "./loggedIn";
-// import favorite from "./favorite";
-
 export const store = configureStore({
-    reducer: {
-        counter: counterReducer, 
-        changePrice: changePriceReducer,
-        changeCart: changeCartReducer,
-        logIn: logInReducer,
-        user: userReducer,
-    }
-})
-
+  reducer: {
+    counter: counterReducer,
+    changePrice: changePriceReducer,
+    changeCart: changeCartReducer,
+    logIn: logInReducer,
+    user: userReducer,
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+});
 
 //tutaj do reducerów dodajemy wszystkie reducery stworzone przez createSlice - z osobnych plików np. counter.js, logged.js
-
 
 // w docelowych komponentach, które mają używać stanów globalnych robimy tak:
 

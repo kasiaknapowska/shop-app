@@ -30,11 +30,6 @@ export default function FormSignUp({
     setErrors([]);
     const newErrors = [];
 
-    // if (formData.password !== formData.repeatPassword) {
-    //   alert("passwords do not match");
-    //   return;
-    // }
-
     if (!formData.email.includes("@")) {
       newErrors.push("Email must contain @");
     }
@@ -62,6 +57,7 @@ export default function FormSignUp({
 
         // navigate('/profile/edit-profile');
         dispatch(logIn());
+        
       } catch (error) {
         if (error.code === "auth/email-already-in-use") {
           alert("Cannot create a user, email already in use");

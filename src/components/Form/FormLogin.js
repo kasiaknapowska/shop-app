@@ -2,7 +2,7 @@ import "./_Form.scss";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/logInSlice";
-import { loggedInUserData } from "../../redux/userSlice";
+import { setCurrentUserData } from "../../redux/userSlice";
 import Button from "../Button/Button";
 import { signInUserWithEmailAndPassword } from "../../lib/auth-firebase";
 
@@ -22,7 +22,7 @@ export default function FormLogin({ formData, users, onInputChange }) {
   //     setError("Invalid email or password");
   //   } else {
   //     dispatch(logIn());
-  //     dispatch(loggedInUserData({...isUserInDatabase}))
+  //     dispatch(setCurrentUserData({...isUserInDatabase}))
   //     setError("");
 
   //   }
@@ -31,22 +31,29 @@ export default function FormLogin({ formData, users, onInputChange }) {
   const onSubmit = async (e) => {
     e.preventDefault();
 
+if (!formData.email || !formData.password) {
+  setError("Please provide your email / password")
+  return
+}
+
     try {
       const { user } = await signInUserWithEmailAndPassword(
         formData.email,
         formData.password
       );
+      console.log(user)
       dispatch(logIn());
+      setError("");
     } catch (error) {
       switch (error.code) {
         case "auth/invalid-email":
-          alert("incorrect email");
+          setError("incorrect email");
           break;
         case "auth/user-not-found":
-          alert("user not found");
+          setError("user not found");
           break;
         case "auth/wrong-password":
-          alert("wrong password");
+          setError("wrong password");
           break;
         default:
           console.log(error);

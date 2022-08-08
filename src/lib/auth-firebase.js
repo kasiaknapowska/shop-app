@@ -91,21 +91,21 @@ export const updateUser = async (id, updates) => {
   await updateDoc(userRef, updates);
 };
 
-export const getCurrentUser = async () => {
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      return user;
-    }
-    return;
-  });
-};
+// export const getCurrentUser = async () => {
+//   onAuthStateChanged(auth, (user) => {
+//     if (user) {
+//       return user;
+//     }
+//     return;
+//   });
+// };
 
-export const getUserById = async (id) => {
-  const collectionRef = collection(db, "users");
-  const q = query(collectionRef);
-  const querySnapshot = await getDocs(q);
+// export const getUserById = async (id) => {
+//   const collectionRef = collection(db, "users");
+//   const q = query(collectionRef);
+//   const querySnapshot = await getDocs(q);
 
-  const users = querySnapshot.docs.map((doc) => doc.data());
-  const user = users.filter((user) => user.uid === id);
-  return user[0];
-};
+//   const users = querySnapshot.docs.map((doc) => doc.data());
+//   const user = users.filter((user) => user.uid === id);
+//   return user[0];
+// };
