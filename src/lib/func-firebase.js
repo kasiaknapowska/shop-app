@@ -32,9 +32,9 @@ export const getUserDoc = async id => {
   }
 }
 
-const addOrder = (id, order, successcallback) => {
-  const docUsersRef = doc(db, "users", id);
-  updateDoc(docUsersRef, {
+export const addOrder = (id, order, successcallback) => {
+  const userRef = doc(db, "users", id);
+  updateDoc(userRef, {
     orders: arrayUnion(order),
   })
     .then((response) => {
@@ -44,7 +44,7 @@ const addOrder = (id, order, successcallback) => {
     .catch((err) => console.log(err.message));
 };
 
-const getFAQ = (successCallback) => {
+export const getFAQ = (successCallback) => {
   getDocs(faqCollectionRef)
     .then((response) => {
       console.log(response.docs);
@@ -52,5 +52,3 @@ const getFAQ = (successCallback) => {
     })
     .catch((err) => console.log(err.message));
 };
-
-export { usersCollectionRef, addOrder, getFAQ };

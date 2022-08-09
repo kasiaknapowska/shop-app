@@ -16,7 +16,7 @@ export default function Cart() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.changeCart.items);
   const totalPrice = useSelector((state) => state.changePrice.price);
-  const loggedInUser = useSelector((state) => state.user.loggedInUser);
+  const currentUser = useSelector((state) => state.user.currentUser);
   const loggedIn = useSelector((state) => state.logIn.loggedIn);
 
   const [sizeError, setSizeError] = useState("");
@@ -66,12 +66,12 @@ export default function Cart() {
 
   const onBuy = (cart) => {
     if (
-      !loggedInUser.name ||
-      !loggedInUser.surname ||
-      !loggedInUser.street ||
-      !loggedInUser.streetNumber ||
-      !loggedInUser.zipCode ||
-      !loggedInUser.city
+      !currentUser.name ||
+      !currentUser.surname ||
+      !currentUser.street ||
+      !currentUser.streetNumber ||
+      !currentUser.zipCode ||
+      !currentUser.city
     ) {
       setShippingDataError("Fill in shipping data");
       return;
@@ -100,7 +100,7 @@ export default function Cart() {
 
   useEffect(() => {
     if (postOrder && !shippingDataError) {
-      addOrder(loggedInUser.id, newOrder, () => setThanks(true));
+      addOrder(currentUser.uid, newOrder, () => setThanks(true));
       setIsLoading(false);
     }
   }, [postOrder]);
@@ -140,7 +140,7 @@ export default function Cart() {
         {loggedIn && showUserData && cart.length > 0 && (
           <CartShipping
             bankAccount={bankAccount}
-            loggedInUser={loggedInUser}
+            currentUser={currentUser}
             shippingDataError={shippingDataError}
             setShippingDataError={setShippingDataError}
             onBuy={onBuy}
