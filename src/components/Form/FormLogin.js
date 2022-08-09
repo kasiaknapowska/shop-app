@@ -2,34 +2,53 @@ import "./_Form.scss";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/logInSlice";
-import { loggedInUserData } from "../../redux/userSlice";
 import Button from "../Button/Button";
+import { signInUserWithEmailAndPassword } from "../../lib/auth-firebase";
+import { useNavigate } from "react-router-dom";
 
-export default function FormLogin({formData, users, onInputChange}) {
+export default function FormLogin({ formData, onInputChange }) {
   const [error, setError] = useState("");
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const checkUser = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    const isUserInDatabase = users.find((user) => {
-      return (
-        user.email === formData.email && user.password === formData.password
+
+if (!formData.email || !formData.password) {
+  setError("Please provide your email / password")
+  return
+}
+
+    try {
+      const { user } = await signInUserWithEmailAndPassword(
+        formData.email,
+        formData.password
       );
-    });
-    if (!isUserInDatabase) {
-      setError("Invalid email or password");
-    } else {
       dispatch(logIn());
-      dispatch(loggedInUserData({...isUserInDatabase}))
+      navigate(`/user/${user.uid}`)
       setError("");
-      
+    } catch (error) {
+      switch (error.code) {
+        case "auth/invalid-email":
+          setError("incorrect email");
+          break;
+        case "auth/user-not-found":
+          setError("user not found");
+          break;
+        case "auth/wrong-password":
+          setError("wrong password");
+          break;
+        default:
+          console.log(error);
+          break;
+      }
     }
   };
- 
+
   return (
     <>
-      <form className="form_container" onSubmit={checkUser}>
+      <form className="form_container" onSubmit={onSubmit}>
         <input
           type="email"
           name="email"
@@ -47,7 +66,6 @@ export default function FormLogin({formData, users, onInputChange}) {
         <Button type="submit" text="Log in" />
         {error && <p className="error">{error}</p>}
       </form>
-      
     </>
   );
 }

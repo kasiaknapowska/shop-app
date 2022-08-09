@@ -3,52 +3,32 @@ import { createSlice } from "@reduxjs/toolkit";
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    loggedInUser: {
-      email: "",
-      id: "",
-      name: "",
-      surname: "",
-      phone: undefined,
-      street: "",
-      streetNumber: "",
-      zipCode: "",
-      city: "",
-      // orders: [],
+    currentUser: {
     },
   },
   reducers: {
-    loggedInUserData: (state, action) => {
-      state.loggedInUser =
-        {
-          ...state.loggedInUser, ...action.payload
-          // email: action.payload.email || state.email,
-          // id: action.payload.id,
-          // name: action.payload.name,
-          // surname: action.payload.surname,
-          // phone: action.payload.phone,
-          // street: action.payload.street,
-          // streetNumber: action.payload.streetNumber,
-          // zipCode: action.payload.zipCode,
-          // city: action.payload.city,
-          // orders: action.payload.orders || state.orders,
-        };
+    setCurrentUserData: (state, action) => {
+      state.currentUser = {
+        ...state.currentUser,
+        ...action.payload,
+      };
     },
-    loggedOutUserData: (state) => {
-      state.loggedInUser = {
-        email: "",
-        id: "",
-        name: "",
-        surname: "",
-        phone: undefined,
-        street: "",
-        streetNumber: "",
-        zipCode: "",
-        city: "",
-        // orders: [],
+    setCurrentUserOrders: (state, action) => {
+      if (state.currentUser.orders) {
+        state.currentUser.orders = [
+          ...state.currentUser.orders,
+          action.payload,
+        ];
+      } else {
+        state.currentUser.orders = [action.payload];
       }
-    }
+    },
+    resetData: (state) => {
+      state.currentUser = {};
+    },
   },
 });
 
-export const { loggedInUserData, loggedOutUserData } = userSlice.actions;
+export const { setCurrentUserData, setCurrentUserOrders, resetData } =
+  userSlice.actions;
 export default userSlice.reducer;

@@ -1,11 +1,9 @@
 import "./_LogIn.scss";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { getUsers } from "../../lib/func-firebase";
-import { useSelector, useDispatch } from "react-redux";
-import { loggedOutUserData } from "../../redux/userSlice";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import FormLogin from "../../components/Form/FormLogin";
 import FormSignUp from "../../components/Form/FormSignUp";
+import { useNavigate } from "react-router-dom";
 
 export default function LogIn() {
   const [isSignUpFormOpen, setIsSignUpFormOpen] = useState(false);
@@ -14,30 +12,10 @@ export default function LogIn() {
     password: "",
     repeatPassword: "",
   });
-  const [users, setUsers] = useState([]);
 
   const loggedIn = useSelector((state) => state.logIn.loggedIn);
+  const currentUserId = useSelector((state) => state.user.currentUser.uid);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    getUsers((response) => {
-      const usersFromFirebase = response.docs.map((doc) => ({
-        email: doc.data().email,
-        password: doc.data().password,
-        name: doc.data().name,
-        surname: doc.data().surname,
-        phone: doc.data().phone,
-        street: doc.data().street,
-        streetNumber: doc.data().streetNumber,
-        zipCode: doc.data().zipCode,
-        city: doc.data().city,
-        orders: doc.data().orders,
-        id: doc.id,
-      }));
-      setUsers(usersFromFirebase);
-    });
-  }, []);
 
   const onInputChange = (e) => {
     const { name, value } = e.target;
@@ -51,12 +29,10 @@ export default function LogIn() {
   };
 
   useEffect(() => {
-    if (loggedIn) {
-      navigate("/user");
-    } else {
-      dispatch(loggedOutUserData());
+    if (loggedIn && currentUserId) {
+    navigate(`/user/${currentUserId}`)
     }
-  }, [loggedIn]);
+  }, [loggedIn, currentUserId])
 
   return (
     <>
@@ -67,15 +43,12 @@ export default function LogIn() {
             {!isSignUpFormOpen ? (
               <FormLogin
                 formData={formData}
-                users={users}
                 onInputChange={onInputChange}
               />
             ) : (
               <FormSignUp
                 formData={formData}
                 onInputChange={onInputChange}
-                users={users}
-                setUsers={setUsers}
               />
             )}
             {!isSignUpFormOpen ? (

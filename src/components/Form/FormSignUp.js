@@ -1,31 +1,32 @@
 import "./_Form.scss";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { loggedInUserData } from "../../redux/userSlice";
 import { logIn } from "../../redux/logInSlice";
 import Button from "../Button/Button";
-import { postUser, getUsers } from "../../lib/func-firebase";
+import {
+  createAuthUserWithEmailAndPassword,
+  createUserDocumentFromAuth,
+  updateUserProfile,
+} from "../../lib/auth-firebase";
+import { useNavigate } from "react-router-dom";
 
 export default function FormSignUp({
   formData,
   onInputChange,
-  users,
-  setUsers,
 }) {
   const [checked, setChecked] = useState(false);
   const [errors, setErrors] = useState([]);
 
-  const dispatch = useDispatch();
 
-  const checkNewUser = async (e) => {
+  const dispatch = useDispatch();
+const navigate = useNavigate();
+
+  const onSubmit = async (e) => {
     e.preventDefault();
+  
     setErrors([]);
     const newErrors = [];
 
-    if (users.find((user) => user.email === formData.email)) {
-      console.log();
-      newErrors.push("The user is already registered");
-    }
     if (!formData.email.includes("@")) {
       newErrors.push("Email must contain @");
     }
@@ -42,40 +43,31 @@ export default function FormSignUp({
     if (newErrors.length > 0) {
       setErrors(newErrors);
     } else {
-      const newUser = {
-        email: formData.email,
-        password: formData.password,
-        name: "",
-        surname: "",
-        phone: "",
-        street: "",
-        streetNumber: "",
-        zipCode: "",
-        city: "",
-        orders: [],
-      };
+      try {
+        const { user } = await createAuthUserWithEmailAndPassword(
+          formData.email,
+          formData.password
+        );
+        const displayName = formData.email;
 
-      postUser(newUser, () =>
-        getUsers((response) => {
-          const usersFromFirebase = response.docs.map((doc) => ({
-            email: doc.data().email,
-            id: doc.id,
-          }));
-          setUsers(usersFromFirebase);
-          const isUserInDatabase = usersFromFirebase.find((user) => {
-            return user.email === formData.email;
-          });
-          dispatch(loggedInUserData({ ...isUserInDatabase }));
-          dispatch(logIn());
-        })
-      );
-      setErrors("");
+        await createUserDocumentFromAuth(user, { displayName });
+        await updateUserProfile({displayName})
+        dispatch(logIn());
+        navigate(`/user/${user.uid}`)
+
+      } catch (error) {
+        if (error.code === "auth/email-already-in-use") {
+          alert("Cannot create a user, email already in use");
+        }
+        console.log("user creation encontered an error", error.message);
+      }
     }
+
   };
 
   return (
     <>
-      <form className="form_container" onSubmit={checkNewUser}>
+      <form className="form_container" onSubmit={onSubmit}>
         <input
           type="email"
           name="email"

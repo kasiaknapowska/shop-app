@@ -1,11 +1,11 @@
 # SHOP-app
 
 This is online store web application created in ReactJS.
-I created the application after 7 months of learning programming (from HTML5, CSS, SCSS to JavaScript and ReactJS) on the basis of my own UX/UI project idea.
+I created the application on the basis of my own UX/UI project idea.
 
 ## NOTE!
-This app has a security vulnerability according to sign in & log in authentication not implemented yet.
-For registration purposes use fake personal data only. For overview and testing You can use email: test@gmail.com & password: testshopapp
+User authentication is provided with Firebase auth.
+You can sign up with your own (fake) data or You can use email: test@shop.pl & password: testshopapp for overview and testing 
 
 ## App sections
 
@@ -13,7 +13,7 @@ The SHOP application consist of a few pages:
 
 1. Home page with available products' cards
 2. Cart page with cart summary
-3. Login / Registration / Profile page
+3. Log in / Sign up / Profile page
 4. Shipping / Privacy Policy pages
 5. FAQ page
 
@@ -32,10 +32,10 @@ The SHOP application consist of a few pages:
 
 * [React](https://reactjs.org/)
 * React Hooks
-* [Redux](https://redux.js.org/usage/configuring-your-store) (configureStore version) for cart management
-* [React router](https://reactrouter.com/docs/en/v6) - pages navigation
+* [Redux Toolkit](https://redux-toolkit.js.org/)
+* [React router](https://reactrouter.com/docs/en/v6)
 * REST API - products fetched from [FAKE STORE API](https://fakestoreapi.com/)
-* [Firebase](https://firebase.google.com/) - to store users' informations (get, post, edit)
+* [Firebase Auth/Firestore](https://firebase.google.com/)
 * [SCSS](https://sass-lang.com/documentation) for styling
 * [Styled Components](https://styled-components.com/) for dropdown select
 * Material UI icons / FontAwesome icons

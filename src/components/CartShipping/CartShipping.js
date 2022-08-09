@@ -5,7 +5,7 @@ import Button from "../Button/Button";
 
 export default function CartShipping({
   bankAccount,
-  loggedInUser,
+  currentUser,
   shippingDataError,
   setShippingDataError,
   onBuy,
@@ -26,9 +26,9 @@ export default function CartShipping({
       <div>
         <h2>Shipping data</h2>
         <p>
-          {loggedInUser.name} {loggedInUser.surname}, {loggedInUser.street}{" "}
-          {loggedInUser.streetNumber}, {loggedInUser.zipCode}{" "}
-          {loggedInUser.city}
+          {currentUser.name} {currentUser.surname}, {currentUser.street}{" "}
+          {currentUser.streetNumber}, {currentUser.zipCode}{" "}
+          {currentUser.city}
         </p>
       </div>
       {editFormOpen && <FormEdit setEditFormOpen={setEditFormOpen} />}
