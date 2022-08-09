@@ -57,7 +57,7 @@ export default function User() {
     <main className="container">
       <h1>Your profile</h1>
       <span className="user_id">
-        User ID: {currentUser.id && currentUser.id}
+        User ID: {currentUser.uid && currentUser.uid}
       </span>
       <div className="btns_container">
         <Button

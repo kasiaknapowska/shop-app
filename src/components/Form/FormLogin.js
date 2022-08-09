@@ -4,11 +4,13 @@ import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/logInSlice";
 import Button from "../Button/Button";
 import { signInUserWithEmailAndPassword } from "../../lib/auth-firebase";
+import { useNavigate } from "react-router-dom";
 
 export default function FormLogin({ formData, onInputChange }) {
   const [error, setError] = useState("");
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -24,6 +26,7 @@ if (!formData.email || !formData.password) {
         formData.password
       );
       dispatch(logIn());
+      navigate(`/user/${user.uid}`)
       setError("");
     } catch (error) {
       switch (error.code) {

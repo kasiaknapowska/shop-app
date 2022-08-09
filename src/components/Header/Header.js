@@ -14,6 +14,7 @@ export default function Header() {
   const navigate = useNavigate();
   const count = useSelector((state) => state.counter.count);
   const loggedIn = useSelector((state) => state.logIn.loggedIn);
+  const currentUserId = useSelector((state) => state.user.currentUser.uid);
   const dispatch = useDispatch();
 
   const onLogOut = async () => {
@@ -23,14 +24,14 @@ export default function Header() {
       dispatch(resetData());
       navigate("/login");
     } catch (error) {
-      console.log("An error occured when logging out".error.message);
+      console.log("An error occured when logging out" + error.message);
     }
   };
 
   return (
     <header>
       <nav className="nav_icons_container">
-        <Link to={loggedIn ? "/user" : "/login"}>
+        <Link to={loggedIn ? `/user/${currentUserId}` : "/login"}>
           <PersonOutlineIcon fontSize="medium" className="nav_icon" />
         </Link>
         <HashLink
@@ -44,7 +45,11 @@ export default function Header() {
           <ShoppingCartOutlinedIcon fontSize="medium" className="nav_icon" />
           <span className="circle">{count}</span>
         </Link>
-        <div onClick={() => onLogOut()}>Log Out</div>
+        {loggedIn ? (
+          <div onClick={() => onLogOut()}>Log Out</div>
+        ) : (
+          <div onClick={() => navigate("/login")}>Log in</div>
+        )}
       </nav>
       <img
         className="logo"

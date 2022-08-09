@@ -7,6 +7,7 @@ import { onAuthStateChangedListener } from "./lib/auth-firebase";
 import { useDispatch } from "react-redux";
 import { setCurrentUserData } from "./redux/userSlice";
 import { getUserDoc } from "./lib/func-firebase";
+import { logIn } from "./redux/logInSlice";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ function App() {
         };
 
         dispatchUser();
+        dispatch(logIn());
       }
     });
     return () => {

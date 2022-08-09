@@ -25,7 +25,7 @@ root.render(
               <Route path="home" element={<Home />} />
               <Route path="cart" element={<Cart />} />
               <Route path="login" element={<LogIn />} />
-              <Route path="user" element={<User />} />
+              <Route path="user/:id" element={<User />} />
               <Route path="info" element={<Info />} />
               <Route path="faq" element={<FAQ />} />
             </Route>

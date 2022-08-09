@@ -8,6 +8,7 @@ import {
   createUserDocumentFromAuth,
   updateUserProfile,
 } from "../../lib/auth-firebase";
+import { useNavigate } from "react-router-dom";
 
 export default function FormSignUp({
   formData,
@@ -16,7 +17,9 @@ export default function FormSignUp({
   const [checked, setChecked] = useState(false);
   const [errors, setErrors] = useState([]);
 
+
   const dispatch = useDispatch();
+const navigate = useNavigate();
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -46,10 +49,11 @@ export default function FormSignUp({
           formData.password
         );
         const displayName = formData.email;
-        
+
         await createUserDocumentFromAuth(user, { displayName });
         await updateUserProfile({displayName})
         dispatch(logIn());
+        navigate(`/user/${user.uid}`)
 
       } catch (error) {
         if (error.code === "auth/email-already-in-use") {
