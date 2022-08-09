@@ -9,16 +9,8 @@ import {
 } from "firebase/firestore";
 import { db } from "./init-firebase";
 
-const usersCollectionRef = collection(db, "users");
-const faqCollectionRef = collection(db, "faq");
 
-// const getUsers = (successCallback) => {
-//   getDocs(usersCollectionRef)
-//     .then((response) => {
-//       successCallback(response);
-//     })
-//     .catch((err) => console.log(err.message));
-// };
+const faqCollectionRef = collection(db, "faq");
 
 export const getUserDoc = async id => {
   const userRef = doc(db, "users", id);

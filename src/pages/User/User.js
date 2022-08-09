@@ -1,52 +1,33 @@
 import "./_User.scss";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Button from "../../components/Button/Button";
 import FormEdit from "../../components/Form/FormEdit";
 import OrdersList from "../../components/OrdersList/OrdersList";
 import { usersCollectionRef, getUsers } from "../../lib/func-firebase";
-import { onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot } from "firebase/firestore";
 import PhoneAndroidOutlinedIcon from "@mui/icons-material/PhoneAndroidOutlined";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
+import { db } from "../../lib/init-firebase";
+import { setCurrentUserData } from "../../redux/userSlice";
 
 export default function User() {
   const loggedIn = useSelector((state) => state.logIn.loggedIn);
   const currentUser = useSelector((state) => state.user.currentUser);
+  const currentUserOrders = useSelector(
+    (state) => state.user.currentUser.orders
+  );
   const [editFormOpen, setEditFormOpen] = useState(false);
-  const [userOrders, setUserOrders] = useState([]);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (loggedIn === false) navigate("/login");
-  }, [loggedIn]);
-
-  // useEffect(() => {
-  //   getUsers((response) => {
-  //     const usersFromFirebase = response.docs.map((doc) => ({
-  //       orders: doc.data().orders,
-  //       id: doc.id,
-  //     }));
-  //     usersFromFirebase.filter(user => {
-  //       if (user.id === currentUser.id) {
-  //         setUserOrders(user.orders)
-  //       }
-  //     });
-  //   });
-  // }, []);
+  const dispatch = useDispatch();
 
   // Realtime  watching firestore database
   // useEffect(() => {
-  //   const unsubscribe = onSnapshot(usersCollectionRef, (snapshot) => {
-  //     const usersFromFirebase = snapshot.docs.map((doc) => ({
-  //       orders: doc.data().orders,
-  //       id: doc.id,
-  //     }));
-  //     usersFromFirebase.filter(user => {
-  //       if (user.id === currentUser.id) {
-  //         setUserOrders(user.orders)
-  //       }
-  //     });
+  //   const userDocRef = doc(db, "users", currentUser.uid);
+  //   const unsubscribe = onSnapshot(userDocRef, (doc) => {
+  //   console.log(doc.data())
+  //   dispatch(setCurrentUserData(doc.data().orders))
   //   });
   //   return () => {
   //     unsubscribe();
@@ -114,7 +95,11 @@ export default function User() {
           </section>
           <section className="orders">
             <h2>Your orders</h2>
-            {userOrders.length === 0 ? <p>You don't have any orders yet</p> : <OrdersList userOrders={userOrders}/>}
+            {loggedIn && currentUserOrders ? (
+              <OrdersList userOrders={currentUser.orders} />
+            ) : (
+              <p>You don't have any orders yet</p>
+            )}
           </section>
         </>
       )}

@@ -9,8 +9,10 @@ import { setCurrentUserData } from "./redux/userSlice";
 import { getUserDoc } from "./lib/func-firebase";
 import { logIn } from "./redux/logInSlice";
 
+
 function App() {
   const dispatch = useDispatch();
+
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
@@ -27,6 +29,8 @@ function App() {
         dispatch(logIn());
       }
     });
+
+
     return () => {
       unsubscribe();
     };

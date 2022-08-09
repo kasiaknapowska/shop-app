@@ -11,14 +11,13 @@ export default function FormEdit({ setEditFormOpen }) {
   const currentUser = useSelector((state) => state.user.currentUser);
 
   const [formData, setFormData] = useState({
-    name: currentUser.name,
-    surname: currentUser.surname,
-    phone: currentUser.phone,
-    street: currentUser.street,
-    streetNumber: currentUser.streetNumber,
-    zipCode: currentUser.zipCode,
-    city: currentUser.city,
-    orders: currentUser.orders,
+    name: currentUser.name || "",
+    surname: currentUser.surname || "",
+    phone: currentUser.phone || "",
+    street: currentUser.street || "",
+    streetNumber: currentUser.streetNumber || "",
+    zipCode: currentUser.zipCode || "",
+    city: currentUser.city || "",
   });
 
   const dispatch = useDispatch();

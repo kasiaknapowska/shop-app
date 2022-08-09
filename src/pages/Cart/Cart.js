@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { resetCart } from "../../redux/changeCartSlice";
 import { resetCount } from "../../redux/counterSlice";
 import { resetPrice } from "../../redux/changePriceSlice";
+import { setCurrentUserOrders } from "../../redux/userSlice";
 import { useState, useEffect } from "react";
 import { addOrder } from "../../lib/func-firebase";
 
@@ -30,7 +31,6 @@ export default function Cart() {
     orderPrice: "",
     products: [],
   });
-  const [postOrder, setPostOrder] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [thanks, setThanks] = useState(false);
 
@@ -64,7 +64,7 @@ export default function Cart() {
     }
   };
 
-  const onBuy = (cart) => {
+  const onBuy = async (cart) => {   
     if (
       !currentUser.name ||
       !currentUser.surname ||
@@ -77,33 +77,41 @@ export default function Cart() {
       return;
     }
 
-    dispatch(resetCart([]));
-    dispatch(resetCount(0));
-    dispatch(resetPrice(0));
+    setIsLoading(true);
 
     const orderedProducts = cart.map((item) => {
       return { id: item.id, quantity: item.quantity, image: item.image, title: item.title };
     });
+
     const orderDate = `${new Date().getDate()} / ${
       new Date().getMonth() + 1
     } / ${new Date().getFullYear()}`;
 
-    setNewOrder({
+    const newOrder = {
       orderPrice: (totalPrice + shippingPrice).toFixed(2),
       orderId: parseInt(Math.random() * Math.pow(10, 7)),
       date: orderDate,
       products: orderedProducts,
-    });
-    setPostOrder(true);
-    setIsLoading(true);
+    };
+
+    try {
+      addOrder(currentUser.uid, newOrder, () => buyProducts(newOrder));
+      
+    } catch (error) {
+      console.log("Your order was not sent: " + error.message)
+    }
+    
   };
 
-  useEffect(() => {
-    if (postOrder && !shippingDataError) {
-      addOrder(currentUser.uid, newOrder, () => setThanks(true));
-      setIsLoading(false);
-    }
-  }, [postOrder]);
+const buyProducts = (newOrder) => {
+  setIsLoading(false);
+  setThanks(true);
+  setNewOrder(newOrder)
+  dispatch(resetCart([]));
+  dispatch(resetCount(0));
+  dispatch(resetPrice(0));
+  dispatch(setCurrentUserOrders(newOrder))
+}
 
   return (
     <>

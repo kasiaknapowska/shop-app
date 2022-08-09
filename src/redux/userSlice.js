@@ -4,15 +4,6 @@ const userSlice = createSlice({
   name: "user",
   initialState: {
     currentUser: {
-      // email: "",
-      // id: "",
-      // name: "",
-      // surname: "",
-      // phone: undefined,
-      // street: "",
-      // streetNumber: "",
-      // zipCode: "",
-      // city: "",
       // orders: [],
     },
   },
@@ -23,11 +14,22 @@ const userSlice = createSlice({
         ...action.payload,
       };
     },
+    setCurrentUserOrders: (state, action) => {
+      if (state.currentUser.orders) {
+        state.currentUser.orders = [
+          ...state.currentUser.orders,
+          action.payload,
+        ];
+      } else {
+        state.currentUser.orders = [action.payload];
+      }
+    },
     resetData: (state) => {
       state.currentUser = {};
     },
   },
 });
 
-export const { setCurrentUserData, resetData } = userSlice.actions;
+export const { setCurrentUserData, setCurrentUserOrders, resetData } =
+  userSlice.actions;
 export default userSlice.reducer;
