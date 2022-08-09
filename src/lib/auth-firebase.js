@@ -1,5 +1,4 @@
 import {
-  getAuth,
   signInWithPopup,
   GoogleAuthProvider,
   FacebookAuthProvider,
@@ -59,14 +58,14 @@ export const onAuthStateChangedListener = (callback) =>
 
 export const createUserDocumentFromAuth = async (
   userAuth,
-  aditionalInformation = {}
+  additionalInformation = {}
 ) => {
   const userDocRef = doc(db, "users", userAuth.uid);
   const userSnapshot = await getDoc(userDocRef);
 
   if (!userSnapshot.exists()) {
     const { email } = userAuth;
-    const createdAt = new Date();
+    const createdAt = new Date().toDateString();
     const uid = userDocRef.id;
 
     try {
@@ -74,10 +73,10 @@ export const createUserDocumentFromAuth = async (
         email,
         createdAt,
         uid,
-        ...aditionalInformation,
+        ...additionalInformation,
       });
     } catch (error) {
-      console.log("error creating the user", error);
+      console.log("An error occurred when creating the user", error);
     }
   }
 
@@ -88,17 +87,24 @@ export const updateUser = async (id, updates) => {
   const userRef = doc(db, "users", id);
   console.log(id, updates);
 
-  await updateDoc(userRef, updates);
+  try {
+    await updateDoc(userRef, updates);
+  } catch (error) {
+    console.log("An error occurred when updating the user docs", error)
+  }
 };
 
-// export const getCurrentUser = async () => {
-//   onAuthStateChanged(auth, (user) => {
-//     if (user) {
-//       return user;
-//     }
-//     return;
-//   });
-// };
+export const updateUserProfile = async data => {
+
+  try {
+    await updateProfile(auth.currentUser, data);
+  } catch (error) {
+    console.log("An error occurred when updating the user profile", error)
+  }
+};
+
+
+
 
 // export const getUserById = async (id) => {
 //   const collectionRef = collection(db, "users");

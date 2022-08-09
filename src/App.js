@@ -3,10 +3,10 @@ import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import { onAuthStateChanged } from "firebase/auth";
 import { onAuthStateChangedListener } from "./lib/auth-firebase";
 import { useDispatch } from "react-redux";
 import { setCurrentUserData } from "./redux/userSlice";
+import { getUserDoc } from "./lib/func-firebase";
 
 function App() {
   const dispatch = useDispatch();
@@ -14,8 +14,15 @@ function App() {
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
       if (user) {
-        const { displayName, email, uid } = user;
-        dispatch(setCurrentUserData({ displayName, email, uid }));
+        const { email, uid } = user;
+        console.log(user);
+
+        const dispatchUser = async () => {
+          const userDoc = await getUserDoc(user.uid);
+          dispatch(setCurrentUserData({ email, uid, ...userDoc }));
+        };
+
+        dispatchUser();
       }
     });
     return () => {

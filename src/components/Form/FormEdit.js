@@ -36,22 +36,10 @@ export default function FormEdit({ setEditFormOpen }) {
 
   const onEdit = async (e, formData) => {
     e.preventDefault();
-    const { name, surname, phone, street, streetNumber, zipCode, city } =
-      formData;
-
-   try {
+   
     await updateUser(currentUser.uid, {
-      name,
-      surname,
-      phone,
-      street,
-      streetNumber,
-      zipCode,
-      city,
+     ...formData
     });
-   } catch (error) {
-    console.log('User update encountered an error', error.message);
-   }
 
     dispatch(setCurrentUserData(formData));
     setEditFormOpen(false);

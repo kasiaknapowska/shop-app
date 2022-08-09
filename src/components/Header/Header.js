@@ -7,17 +7,25 @@ import "./_Header.scss";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { signOutUser } from "../../lib/auth-firebase";
+import { resetData } from "../../redux/userSlice";
 
 export default function Header() {
   const navigate = useNavigate();
   const count = useSelector((state) => state.counter.count);
-  const loggedIn = useSelector(state => state.logIn.loggedIn);
+  const loggedIn = useSelector((state) => state.logIn.loggedIn);
   const dispatch = useDispatch();
 
-  const onLogOut = () => {
-    dispatch(logOut())
-    navigate("/login")
-  }
+  const onLogOut = async () => {
+    try {
+      await signOutUser();
+      dispatch(logOut());
+      dispatch(resetData());
+      navigate("/login");
+    } catch (error) {
+      console.log("An error occured when logging out".error.message);
+    }
+  };
 
   return (
     <header>
