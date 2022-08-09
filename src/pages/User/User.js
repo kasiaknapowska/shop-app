@@ -1,16 +1,13 @@
 import "./_User.scss";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Button from "../../components/Button/Button";
 import FormEdit from "../../components/Form/FormEdit";
 import OrdersList from "../../components/OrdersList/OrdersList";
-import { usersCollectionRef, getUsers } from "../../lib/func-firebase";
-import { doc, onSnapshot } from "firebase/firestore";
 import PhoneAndroidOutlinedIcon from "@mui/icons-material/PhoneAndroidOutlined";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
-import { db } from "../../lib/init-firebase";
-import { setCurrentUserData } from "../../redux/userSlice";
+
 
 export default function User() {
   const loggedIn = useSelector((state) => state.logIn.loggedIn);
@@ -20,19 +17,6 @@ export default function User() {
   );
   const [editFormOpen, setEditFormOpen] = useState(false);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  // Realtime  watching firestore database
-  // useEffect(() => {
-  //   const userDocRef = doc(db, "users", currentUser.uid);
-  //   const unsubscribe = onSnapshot(userDocRef, (doc) => {
-  //   console.log(doc.data())
-  //   dispatch(setCurrentUserData(doc.data().orders))
-  //   });
-  //   return () => {
-  //     unsubscribe();
-  //   };
-  // }, []);
 
   return (
     <main className="container">

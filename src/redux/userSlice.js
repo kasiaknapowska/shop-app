@@ -4,7 +4,6 @@ const userSlice = createSlice({
   name: "user",
   initialState: {
     currentUser: {
-      // orders: [],
     },
   },
   reducers: {

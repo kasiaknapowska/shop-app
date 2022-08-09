@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setCurrentUserData } from "../../redux/userSlice";
 import Button from "../Button/Button";
-// import { editUser } from "../../lib/func-firebase";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { updateUser } from "../../lib/auth-firebase";
 
