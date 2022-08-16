@@ -5,6 +5,8 @@ import { logIn } from "../../redux/logInSlice";
 import Button from "../Button/Button";
 import { signInUserWithEmailAndPassword } from "../../lib/auth-firebase";
 import { useNavigate } from "react-router-dom";
+import { OutlinedInput } from "@mui/material";
+import CustomInput from "../CustomInput/CustomInput";
 
 export default function FormLogin({ formData, onInputChange }) {
   const [error, setError] = useState("");
@@ -49,16 +51,18 @@ if (!formData.email || !formData.password) {
   return (
     <>
       <form className="form_container" onSubmit={onSubmit}>
-        <input
+             <OutlinedInput
+          color="secondary"
+          placeholder="Your email"
           type="email"
           name="email"
-          placeholder="E-mail"
           value={formData.email}
           onChange={onInputChange}
+          required
         />
-        <input
-          type="password"
+          <CustomInput
           name="password"
+          inputType="password"
           placeholder="Password"
           value={formData.password}
           onChange={onInputChange}

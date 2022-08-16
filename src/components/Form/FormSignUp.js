@@ -9,21 +9,20 @@ import {
   updateUserProfile,
 } from "../../lib/auth-firebase";
 import { useNavigate } from "react-router-dom";
+import { OutlinedInput } from "@mui/material";
+import CustomInput from "../CustomInput/CustomInput";
 
-export default function FormSignUp({
-  formData,
-  onInputChange,
-}) {
+export default function FormSignUp({ formData, onInputChange }) {
   const [checked, setChecked] = useState(false);
   const [errors, setErrors] = useState([]);
 
-
   const dispatch = useDispatch();
-const navigate = useNavigate();
+  const navigate = useNavigate();
+
 
   const onSubmit = async (e) => {
     e.preventDefault();
-  
+
     setErrors([]);
     const newErrors = [];
 
@@ -51,10 +50,9 @@ const navigate = useNavigate();
         const displayName = formData.email;
 
         await createUserDocumentFromAuth(user, { displayName });
-        await updateUserProfile({displayName})
+        await updateUserProfile({ displayName });
         dispatch(logIn());
-        navigate(`/user/${user.uid}`)
-
+        navigate(`/user/${user.uid}`);
       } catch (error) {
         if (error.code === "auth/email-already-in-use") {
           alert("Cannot create a user, email already in use");
@@ -62,29 +60,30 @@ const navigate = useNavigate();
         console.log("user creation encontered an error", error.message);
       }
     }
-
   };
 
   return (
     <>
       <form className="form_container" onSubmit={onSubmit}>
-        <input
+        <OutlinedInput
+          color="secondary"
+          placeholder="Your email"
           type="email"
           name="email"
-          placeholder="Your email"
           value={formData.email}
           onChange={onInputChange}
+          required
         />
-        <input
-          type="password"
+        <CustomInput
           name="password"
+          inputType="password"
           placeholder="Password"
           value={formData.password}
           onChange={onInputChange}
         />
-        <input
-          type="password"
+          <CustomInput
           name="repeatPassword"
+          inputType="password"
           placeholder="Repeat passwsord"
           value={formData.repeatPassword}
           onChange={onInputChange}

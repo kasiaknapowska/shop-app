@@ -81,6 +81,12 @@ input {
     width: 24rem;
   }
 }
+.MuiOutlinedInput-root {
+  width: 100%;
+  @media screen and ($tablet_s) {
+    width: 24rem;
+  }
+}
 .error {
   color: $colorError;
   text-align: center;
@@ -90,3 +96,4 @@ input {
 a, a:active, a:focus{
   outline: none;
 }
+
