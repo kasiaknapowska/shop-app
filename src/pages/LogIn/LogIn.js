@@ -1,9 +1,12 @@
 import "./_LogIn.scss";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import FormLogin from "../../components/Form/FormLogin";
 import FormSignUp from "../../components/Form/FormSignUp";
 import { useNavigate } from "react-router-dom";
+import Button from "../../components/Button/Button";
+import { signInWithGooglePopup, signInWithFacebookPopup } from "../../lib/auth-firebase";
+import { logIn } from "../../redux/logInSlice";
 
 export default function LogIn() {
   const [isSignUpFormOpen, setIsSignUpFormOpen] = useState(false);
@@ -16,6 +19,7 @@ export default function LogIn() {
   const loggedIn = useSelector((state) => state.logIn.loggedIn);
   const currentUserId = useSelector((state) => state.user.currentUser.uid);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onInputChange = (e) => {
     const { name, value } = e.target;
@@ -33,6 +37,24 @@ export default function LogIn() {
     navigate(`/user/${currentUserId}`)
     }
   }, [loggedIn, currentUserId])
+
+
+  const signInWithGoogle = async () => {
+    try {
+        await signInWithGooglePopup();
+        dispatch(logIn());
+    } catch (error) {
+        alert(error.message);
+    }
+};
+const signInWithFacebook = async () => {
+  try {
+      await signInWithFacebookPopup();
+      dispatch(logIn());
+  } catch (error) {
+      alert(error.message);
+  }
+};
 
   return (
     <>
@@ -62,6 +84,10 @@ export default function LogIn() {
                 <span className="change_form_link" onClick={() => setIsSignUpFormOpen(false)}>Log in</span>
               </h2>
             )}
+            <div className="auth_providers_container">
+              <Button text="login with google" icon="google" onClick={signInWithGoogle} type="google"/>
+              <Button text="login with facebook" icon="facebook" onClick={signInWithFacebook} type="facebook"/>
+            </div>
           </>
         )}
       </main>

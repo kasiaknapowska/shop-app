@@ -6,6 +6,8 @@ import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import AttachMoneyRoundedIcon from "@mui/icons-material/AttachMoneyRounded";
 import InventoryRoundedIcon from '@mui/icons-material/InventoryRounded';
 import CheckIcon from '@mui/icons-material/Check';
+import GoogleIcon from '@mui/icons-material/Google';
+import FacebookIcon from '@mui/icons-material/Facebook';
 import "./_Button.scss";
 
 export default function Button({ text, icon, onClick, type }) {
@@ -21,6 +23,8 @@ export default function Button({ text, icon, onClick, type }) {
           className={classNames("btn", {
             primary: type === "primary",
             secondary: type === "secondary",
+            google: type === "google",
+            facebook: type === "facebook"
           })}
           onClick={onClick}
         >
@@ -33,6 +37,8 @@ export default function Button({ text, icon, onClick, type }) {
             {icon === "payment" && <AttachMoneyRoundedIcon />}
             {icon === "buy" && <InventoryRoundedIcon/>}
             {icon === "accept" && <CheckIcon/>}
+            {icon === "google" && <GoogleIcon/>}
+            {icon === "facebook" && <FacebookIcon/>}
           </div>
          
           {text}
