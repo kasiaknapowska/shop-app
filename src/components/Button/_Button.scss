@@ -6,6 +6,7 @@
     margin: 2rem 0;
     display: flex;
     align-items: center;
+    justify-content: center;
     border: none;
     border-radius: 5px;
     @include mixins.websiteFont(500, white, 1rem) {
@@ -47,5 +48,32 @@
     &:hover {
         background-color: $colorSecondary;
         color: white;
+    } 
+}
+
+.google, .facebook {
+    width: 100%;
+    background-color: white;
+    margin: .5rem 0;
+    text-transform: capitalize;
+    font-family: inherit;
+    max-width: 24rem;
+    &:hover {
+        color: white;
+    }
+}
+.google {
+    border: 2px solid #DB4437;
+    color: #DB4437;
+    &:hover {
+        background-color: #DB4437;
+    } 
+}
+.facebook {
+    border: 2px solid #4267B2;
+    color: #4267B2;
+    &:hover {
+        background-color: #4267B2;
+      
     } 
 }

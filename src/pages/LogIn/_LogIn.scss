@@ -12,3 +12,12 @@
     text-underline-offset: 0.2rem;
   }
 }
+.auth_providers_container {
+  margin: 3rem 0;
+  width: 100%;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
