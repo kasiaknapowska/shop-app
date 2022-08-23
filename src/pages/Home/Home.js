@@ -4,7 +4,9 @@ import { getCategories } from "../../API/fetch";
 import Select from "../../components/Select/Select";
 import Products from "../../components/Products/Products";
 import SecurityAlert from "../../components/SecurityAlert/SecurityAlert";
+import ImageSlider from "../../components/ImageSlider/ImageSlider";
 import { useSessionStorage } from "../../hooks/useWindowStorage";
+
 
 export default function Home() {
   const [category, setCategory] = useState("all categories");
@@ -23,6 +25,7 @@ export default function Home() {
       {showSecurityAlert && (
         <SecurityAlert setShowSecurityAlert={setShowSecurityAlert} />
       )}
+      <ImageSlider/>
       <main className="container home">
         <div className="center home_select">
           <Select
